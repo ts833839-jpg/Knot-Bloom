@@ -19,7 +19,7 @@ export function MobileNav() {
   ];
 
   return (
-    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-ivory-50/95 backdrop-blur-md border-t border-gold-500/30 shadow-royal px-2 py-1.5 flex items-center justify-around">
+    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-ivory-50/95 backdrop-blur-md border-t border-gold-500/30 shadow-royal px-2 pt-1.5 pb-[max(env(safe-area-inset-bottom),0.5rem)] flex items-center justify-around">
       {navItems.map((item) => {
         const isActive = pathname === item.href;
         const Icon = item.icon;

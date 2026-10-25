@@ -141,14 +141,14 @@ export function Header() {
 
             {/* Brand Logo & Royal Crest */}
             <Link href="/" className="flex flex-col items-center group">
-              <div className="flex items-center gap-1.5">
-                <span className="text-gold-500 text-lg leading-none font-serif select-none">⚜</span>
-                <span className="font-serif text-2xl sm:text-3xl font-bold tracking-[0.16em] text-maroon-900 group-hover:text-gold-600 transition-colors whitespace-nowrap">
+              <div className="flex items-center gap-1 sm:gap-1.5">
+                <span className="text-gold-500 text-sm sm:text-base lg:text-lg leading-none font-serif select-none">⚜</span>
+                <span className="font-serif text-lg sm:text-2xl lg:text-3xl font-bold tracking-wider sm:tracking-[0.16em] text-maroon-900 group-hover:text-gold-600 transition-colors whitespace-nowrap">
                   KNOT & BLOOM
                 </span>
-                <span className="text-gold-500 text-lg leading-none font-serif select-none">⚜</span>
+                <span className="text-gold-500 text-sm sm:text-base lg:text-lg leading-none font-serif select-none">⚜</span>
               </div>
-              <span className="text-[9px] tracking-[0.25em] text-maroon-700/80 uppercase font-sans font-medium -mt-1 hidden sm:block">
+              <span className="text-[9px] tracking-[0.25em] text-maroon-700/80 uppercase font-sans font-medium -mt-0.5 hidden sm:block">
                 Discover Something Worth Keeping
               </span>
             </Link>
@@ -292,45 +292,73 @@ export function Header() {
           </div>
         </div>
 
-        {/* Mobile Navigation Drawer */}
+        {/* Mobile Navigation Drawer & Backdrop */}
         {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-x-0 top-full bg-ivory-50 border-b border-gold-500/30 shadow-royal-lg px-6 py-6 space-y-4 animate-in slide-in-from-top-4">
-            <div className="grid grid-cols-2 gap-3 pb-4 border-b border-sand-dark/40 text-sm">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="py-1 text-charcoal-800 hover:text-gold-600 font-medium"
+          <>
+            <div
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 lg:hidden"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <div className="lg:hidden fixed inset-x-0 top-full bg-ivory-50 border-b border-gold-500/30 shadow-royal-lg px-5 py-5 space-y-4 animate-in slide-in-from-top-2 max-h-[80vh] overflow-y-auto z-40">
+              {/* Direct Atelier Contact Card */}
+              <div className="p-3.5 rounded-xl bg-gold-50/90 border border-gold-400/40 flex items-center justify-between text-xs shadow-sm">
+                <div>
+                  <span className="font-bold text-maroon-900 block text-[11px] uppercase tracking-wider">
+                    Direct Atelier Contact
+                  </span>
+                  <span className="text-xs font-semibold text-charcoal-700">📞 9080236848</span>
+                </div>
+                <a
+                  href="https://wa.me/919080236848?text=Hello%20Knot%20%26%20Bloom,%20I%20would%20like%20to%20inquire%20about%20a%20handcrafted%20crochet%20creation."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-ivory-100 font-semibold text-xs shadow-sm transition-colors"
                 >
-                  {link.label}
+                  WhatsApp
+                </a>
+              </div>
+
+              {/* Navigation Links Grid */}
+              <div className="grid grid-cols-2 gap-2.5 pb-4 border-b border-sand-dark/40 text-xs">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="p-2 rounded-lg bg-ivory-100 hover:bg-gold-50 text-charcoal-800 hover:text-maroon-950 font-medium transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="flex items-center justify-around pt-1 text-xs text-charcoal-600">
+                <Link
+                  href="/about"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="hover:text-maroon-900"
+                >
+                  Our Story
                 </Link>
-              ))}
+                <span>•</span>
+                <Link
+                  href="/contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="hover:text-maroon-900"
+                >
+                  Contact
+                </Link>
+                <span>•</span>
+                <Link
+                  href="/faq"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="hover:text-maroon-900"
+                >
+                  FAQs
+                </Link>
+              </div>
             </div>
-            <div className="flex items-center justify-between pt-2 text-xs text-charcoal-600">
-              <Link
-                href="/about"
-                onClick={() => setMobileMenuOpen(false)}
-                className="hover:text-maroon-900"
-              >
-                Our Story
-              </Link>
-              <Link
-                href="/contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="hover:text-maroon-900"
-              >
-                Customer Support
-              </Link>
-              <Link
-                href="/faq"
-                onClick={() => setMobileMenuOpen(false)}
-                className="hover:text-maroon-900"
-              >
-                FAQs
-              </Link>
-            </div>
-          </div>
+          </>
         )}
       </header>
 

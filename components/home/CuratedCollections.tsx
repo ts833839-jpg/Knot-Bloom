@@ -45,29 +45,29 @@ export function CuratedCollections({ products }: CuratedCollectionsProps) {
   });
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-sand-dark/40">
+    <section className="py-10 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-sand-dark/40">
       {/* Editorial Title */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-        <div className="space-y-2">
-          <div className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.25em] font-semibold text-gold-700">
-            <Sparkles className="w-3.5 h-3.5 text-gold-600" />
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-6 sm:mb-12">
+        <div className="space-y-1.5 sm:space-y-2">
+          <div className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider sm:tracking-[0.25em] font-semibold text-gold-700">
+            <Sparkles className="w-3.5 h-3.5 text-gold-600 shrink-0" />
             <span>Treasures Worth Keeping</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-maroon-950">
+          <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-maroon-950">
             Featured Collections
           </h2>
-          <p className="text-sm text-charcoal-600 font-light">
+          <p className="text-xs sm:text-sm text-charcoal-600 font-light">
             Patiently hand-crocheted heirloom pieces, selected for grace and longevity.
           </p>
         </div>
 
-        {/* Tab Pills */}
-        <div className="flex flex-wrap gap-2">
+        {/* Tab Pills - Horizontally swipeable on mobile, wrapping on desktop */}
+        <div className="flex overflow-x-auto no-scrollbar pb-2 gap-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
           {tabs.map((tab) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key as any)}
-              className={`text-xs px-4 py-2 rounded-full border transition-all ${
+              className={`text-xs px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full border transition-all whitespace-nowrap shrink-0 ${
                 activeTab === tab.key
                   ? 'bg-maroon-900 text-gold-200 border-gold-500 font-semibold shadow-sm'
                   : 'bg-ivory-50 text-charcoal-700 border-sand-dark hover:border-gold-300'
@@ -79,9 +79,9 @@ export function CuratedCollections({ products }: CuratedCollectionsProps) {
         </div>
       </div>
 
-      {/* Product Cards Grid */}
+      {/* Product Cards Grid - Clean 2-column layout on mobile, 4-col on desktop */}
       {filteredProducts.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 gap-3 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {filteredProducts.slice(0, 8).map((product) => (
             <ProductCard
               key={product.id}

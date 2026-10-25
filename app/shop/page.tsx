@@ -244,13 +244,13 @@ function ShopContent() {
 
           {/* Loading Skeleton */}
           {loading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-pulse">
+            <div className="grid grid-cols-2 gap-3 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3 animate-pulse">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="bg-ivory-50 rounded-2xl h-96 border border-sand-dark/40" />
+                <div key={i} className="bg-ivory-50 rounded-2xl h-80 sm:h-96 border border-sand-dark/40" />
               ))}
             </div>
           ) : products.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 gap-3 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {products.map((product) => (
                 <ProductCard
                   key={product.id}

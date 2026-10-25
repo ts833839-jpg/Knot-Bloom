@@ -22,7 +22,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-charcoal-950 text-ivory-100 border-t border-gold-500/20 pt-16 pb-12">
+    <footer className="bg-charcoal-950 text-ivory-100 border-t border-gold-500/20 pt-16 pb-24 lg:pb-12">
       {/* Trust Badges Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 border-b border-gold-500/15">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">

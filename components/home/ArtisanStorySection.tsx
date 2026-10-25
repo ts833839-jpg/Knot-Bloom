@@ -41,7 +41,7 @@ export function ArtisanStorySection() {
               <video
                 ref={videoRef}
                 src="/videos/artisan-crochet-masterpiece.mp4"
-                poster="/products/gallery/emerald-and-magenta-crochet-flower-mat.png"
+                poster="https://res.cloudinary.com/zsjpdh9i/image/upload/f_auto,q_auto/v1792909204/knot-and-bloom/products/emerald-and-magenta-crochet-flower-mat"
                 autoPlay
                 loop
                 muted={isMuted}
@@ -53,39 +53,39 @@ export function ArtisanStorySection() {
               <div className="absolute inset-0 bg-gradient-to-t from-maroon-950/80 via-transparent to-transparent pointer-events-none" />
 
               {/* Video Overlay Control Buttons */}
-              <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-maroon-950/85 backdrop-blur-md text-[10px] font-bold uppercase tracking-wider text-gold-300 border border-gold-500/30">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 flex items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-maroon-950/85 backdrop-blur-md text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-gold-300 border border-gold-500/30">
+                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-ping" />
                   Atelier In Motion
                 </span>
               </div>
 
-              <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
+              <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 flex items-center gap-1.5 sm:gap-2">
                 <button
                   type="button"
                   onClick={togglePlay}
                   aria-label={isPlaying ? 'Pause video' : 'Play video'}
-                  className="w-9 h-9 rounded-full bg-maroon-950/80 hover:bg-maroon-900 text-gold-300 border border-gold-500/40 flex items-center justify-center backdrop-blur-md transition-all shadow-md hover:scale-105"
+                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-maroon-950/80 hover:bg-maroon-900 text-gold-300 border border-gold-500/40 flex items-center justify-center backdrop-blur-md transition-all shadow-md hover:scale-105"
                 >
-                  {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
+                  {isPlaying ? <Pause className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-0.5" />}
                 </button>
                 <button
                   type="button"
                   onClick={toggleMute}
                   aria-label={isMuted ? 'Unmute video' : 'Mute video'}
-                  className="w-9 h-9 rounded-full bg-maroon-950/80 hover:bg-maroon-900 text-gold-300 border border-gold-500/40 flex items-center justify-center backdrop-blur-md transition-all shadow-md hover:scale-105"
+                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-maroon-950/80 hover:bg-maroon-900 text-gold-300 border border-gold-500/40 flex items-center justify-center backdrop-blur-md transition-all shadow-md hover:scale-105"
                 >
-                  {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                  {isMuted ? <VolumeX className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : <Volume2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
                 </button>
               </div>
 
               {/* Floating Badge on Video */}
-              <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-charcoal-950/85 backdrop-blur-md border border-gold-500/30 flex items-center justify-between pointer-events-none">
+              <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-charcoal-950/85 backdrop-blur-md border border-gold-500/30 flex items-center justify-between pointer-events-none">
                 <div>
-                  <p className="text-xs font-serif font-bold text-gold-200">Master Artisan Atelier</p>
-                  <p className="text-[11px] text-ivory-300">Every knot and stitch hooked with devoted patience</p>
+                  <p className="text-[11px] sm:text-xs font-serif font-bold text-gold-200">Master Artisan Atelier</p>
+                  <p className="text-[9px] sm:text-[11px] text-ivory-300">Every knot and stitch hooked with devoted patience</p>
                 </div>
-                <span className="text-xl text-gold-400 font-serif">⚜</span>
+                <span className="text-base sm:text-xl text-gold-400 font-serif">⚜</span>
               </div>
             </div>
 

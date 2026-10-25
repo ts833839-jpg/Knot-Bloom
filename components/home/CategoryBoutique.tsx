@@ -15,23 +15,23 @@ export function CategoryBoutique({ categories }: CategoryBoutiqueProps) {
   );
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section className="py-10 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Editorial Header */}
-      <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
-        <div className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.25em] font-semibold text-gold-700">
-          <Sparkles className="w-3.5 h-3.5 text-gold-600" />
+      <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-14 space-y-2.5 sm:space-y-3">
+        <div className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider sm:tracking-[0.25em] font-semibold text-gold-700">
+          <Sparkles className="w-3.5 h-3.5 text-gold-600 shrink-0" />
           <span>Curated Boutiques</span>
         </div>
-        <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-maroon-950">
+        <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-maroon-950">
           Explore by Craft & Motif
         </h2>
-        <p className="text-sm text-charcoal-600 font-light leading-relaxed">
+        <p className="text-xs sm:text-sm text-charcoal-600 font-light leading-relaxed">
           Each boutique showcases heirloom crochet creations patiently hooked using intricate crochet techniques, luxury yarn, and dedicated hand craftsmanship.
         </p>
       </div>
 
       {/* Grid of Categories */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {validCategories.map((cat) => (
           <Link
             key={cat.id}

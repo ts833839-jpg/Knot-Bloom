@@ -53,8 +53,11 @@ export function FilterSidebar({
         </h4>
         <div className="space-y-1.5 max-h-72 overflow-y-auto pr-1">
           <button
-            onClick={() => onSelectCategory('')}
-            className={`w-full text-left text-xs px-2.5 py-2 rounded-xl transition-colors flex items-center justify-between ${
+            onClick={() => {
+              onSelectCategory('');
+              if (onCloseMobile) onCloseMobile();
+            }}
+            className={`w-full text-left text-xs px-3 py-2.5 rounded-xl transition-colors flex items-center justify-between ${
               selectedCategory === ''
                 ? 'bg-maroon-900 text-gold-200 font-semibold shadow-sm'
                 : 'text-charcoal-700 hover:bg-gold-50'
@@ -66,8 +69,11 @@ export function FilterSidebar({
           {categories.map((cat) => (
             <button
               key={cat.id}
-              onClick={() => onSelectCategory(cat.slug)}
-              className={`w-full text-left text-xs px-2.5 py-2 rounded-xl transition-colors flex items-center justify-between ${
+              onClick={() => {
+                onSelectCategory(cat.slug);
+                if (onCloseMobile) onCloseMobile();
+              }}
+              className={`w-full text-left text-xs px-3 py-2.5 rounded-xl transition-colors flex items-center justify-between ${
                 selectedCategory === cat.slug
                   ? 'bg-maroon-900 text-gold-200 font-semibold shadow-sm'
                   : 'text-charcoal-700 hover:bg-gold-50'

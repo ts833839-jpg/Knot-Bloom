@@ -254,21 +254,21 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
           )}
 
           {/* Craft Guarantee Trio */}
-          <div className="grid grid-cols-3 gap-3 pt-2 text-center text-xs">
-            <div className="p-3 rounded-2xl bg-ivory-50 border border-sand-dark/40 flex flex-col items-center">
-              <Scissors className="w-4 h-4 text-gold-600 mb-1" />
-              <span className="font-semibold text-maroon-950">Pure Artisan Hand-Hooked</span>
-              <span className="text-[10px] text-charcoal-500">Master Atelier</span>
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-2 text-center text-xs">
+            <div className="p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-ivory-50 border border-sand-dark/40 flex flex-col items-center">
+              <Scissors className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gold-600 mb-1" />
+              <span className="font-semibold text-maroon-950 text-[10px] sm:text-xs leading-tight">Pure Hand-Hooked</span>
+              <span className="text-[9px] sm:text-[10px] text-charcoal-500">Master Atelier</span>
             </div>
-            <div className="p-3 rounded-2xl bg-ivory-50 border border-sand-dark/40 flex flex-col items-center">
-              <Sparkles className="w-4 h-4 text-gold-600 mb-1" />
-              <span className="font-semibold text-maroon-950">Custom Colors & Sizing</span>
-              <span className="text-[10px] text-charcoal-500">Bespoke per client</span>
+            <div className="p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-ivory-50 border border-sand-dark/40 flex flex-col items-center">
+              <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gold-600 mb-1" />
+              <span className="font-semibold text-maroon-950 text-[10px] sm:text-xs leading-tight">Custom Colors</span>
+              <span className="text-[9px] sm:text-[10px] text-charcoal-500">Bespoke sizing</span>
             </div>
-            <div className="p-3 rounded-2xl bg-ivory-50 border border-sand-dark/40 flex flex-col items-center">
-              <ShieldCheck className="w-4 h-4 text-gold-600 mb-1" />
-              <span className="font-semibold text-maroon-950">Worldwide Courier</span>
-              <span className="text-[10px] text-charcoal-500">Delivered with care</span>
+            <div className="p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-ivory-50 border border-sand-dark/40 flex flex-col items-center">
+              <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gold-600 mb-1" />
+              <span className="font-semibold text-maroon-950 text-[10px] sm:text-xs leading-tight">Direct Dispatch</span>
+              <span className="text-[9px] sm:text-[10px] text-charcoal-500">Care courier</span>
             </div>
           </div>
         </div>
@@ -379,9 +379,9 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
               href={`https://wa.me/919080236848?text=${whatsappMessage}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-4 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-ivory-100 font-serif text-base font-bold shadow-royal flex items-center justify-center gap-2.5 transition-all text-center"
+              className="w-full py-3.5 sm:py-4 px-4 sm:px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-ivory-100 font-serif text-sm sm:text-base font-bold shadow-royal flex items-center justify-center gap-2 sm:gap-2.5 transition-all text-center"
             >
-              <MessageCircle className="w-5 h-5" />
+              <MessageCircle className="w-5 h-5 shrink-0" />
               <span>Inquire & Order via WhatsApp (9080236848)</span>
             </a>
 
@@ -562,7 +562,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 gap-3 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {relatedProducts.slice(0, 4).map((rel) => (
               <ProductCard key={rel.id} product={rel} />
             ))}

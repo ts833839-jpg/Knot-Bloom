@@ -33,8 +33,8 @@ export function DreamyHero() {
         ))}
       </div>
 
-      {/* Royal Arch Framing */}
-      <div className="absolute inset-6 sm:inset-10 border border-gold-500/20 rounded-3xl pointer-events-none flex flex-col justify-between p-4 sm:p-6">
+      {/* Royal Arch Framing (Hidden on mobile to avoid overlapping content) */}
+      <div className="hidden sm:flex absolute inset-6 sm:inset-10 border border-gold-500/20 rounded-3xl pointer-events-none flex-col justify-between p-4 sm:p-6">
         <div className="flex justify-between text-gold-400/40 text-xs font-serif">
           <span>⚜ ARTISAN ATELIER ⚜</span>
           <span>ESTD. 2026</span>
@@ -45,30 +45,30 @@ export function DreamyHero() {
         </div>
       </div>
 
-      <div className="relative max-w-5xl mx-auto text-center z-10 space-y-8 py-8">
+      <div className="relative max-w-5xl mx-auto text-center z-10 space-y-6 sm:space-y-8 py-4 sm:py-8">
         {/* Editorial Sub-Plaque */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-maroon-900/80 border border-gold-500/40 shadow-royal backdrop-blur-md">
-          <Sparkles className="w-3.5 h-3.5 text-gold-400 animate-pulse" />
-          <span className="text-xs uppercase tracking-[0.25em] font-medium text-gold-200">
-            KNOT & BLOOM • Luxury Handcrafted Crochet Portfolio & Atelier
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-1.5 rounded-full bg-maroon-900/80 border border-gold-500/40 shadow-royal backdrop-blur-md max-w-full">
+          <Sparkles className="w-3.5 h-3.5 text-gold-400 animate-pulse shrink-0" />
+          <span className="text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-[0.2em] font-medium text-gold-200 truncate">
+            KNOT & BLOOM • Luxury Handcrafted Crochet Portfolio
           </span>
         </div>
 
         {/* Hero Headline */}
         <div className="space-y-3">
-          <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-ivory-50 leading-[1.1]">
+          <h1 className="font-serif text-3xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-ivory-50 leading-[1.15]">
             A World of <span className="gold-shimmer italic font-normal">Handcrafted Things.</span>
           </h1>
-          <p className="max-w-2xl mx-auto text-base sm:text-lg text-ivory-300 font-light leading-relaxed">
+          <p className="max-w-2xl mx-auto text-sm sm:text-lg text-ivory-300 font-light leading-relaxed px-2">
             Discover our portfolio of handcrafted crochet wearable heirlooms, bespoke charms, and everlasting yarn blossoms — patient stitchwork crafted with devoted passion.
           </p>
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2">
           <Link
             href="/shop"
-            className="w-full sm:w-auto px-8 py-3.5 rounded-xl btn-gold flex items-center justify-center gap-2.5 text-sm font-semibold shadow-gold-glow group"
+            className="w-full sm:w-auto px-7 py-3.5 rounded-xl btn-gold flex items-center justify-center gap-2.5 text-xs sm:text-sm font-semibold shadow-gold-glow group text-center"
           >
             <span>Explore Portfolio Creations</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -76,7 +76,7 @@ export function DreamyHero() {
 
           <Link
             href="/contact"
-            className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-maroon-900/60 hover:bg-maroon-900 text-gold-200 border border-gold-500/40 hover:border-gold-400 flex items-center justify-center gap-2 text-sm font-medium transition-all backdrop-blur-sm"
+            className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-maroon-900/60 hover:bg-maroon-900 text-gold-200 border border-gold-500/40 hover:border-gold-400 flex items-center justify-center gap-2 text-xs sm:text-sm font-medium transition-all backdrop-blur-sm text-center"
           >
             <Compass className="w-4 h-4 text-gold-400" />
             <span>Commission a Bespoke Piece</span>
@@ -84,23 +84,23 @@ export function DreamyHero() {
         </div>
 
         {/* Floating Mini Product Highlights (Zero Prices) */}
-        <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto text-left">
+        <div className="pt-6 sm:pt-8 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 max-w-4xl mx-auto text-left">
           {[
-            { title: 'Amethyst Grape Duo', category: 'Keychains', note: 'Handcrafted', img: '/products/gallery/crocheted-grape-duo-keychain-3.png', slug: 'amethyst-lilac-grape-duo-crochet-keychain' },
-            { title: 'Teal & Mint Sling', category: 'Bags', note: 'Handcrafted', img: '/products/gallery/teal-and-mint-crochet-wall-hanging-bag-7.png', slug: 'artisan-teal-mint-crochet-crossbody-festival-bag' },
-            { title: 'Emerald Petal Mat', category: 'Home', note: 'Handcrafted', img: '/products/gallery/emerald-and-magenta-crochet-flower-mat.png', slug: 'emerald-magenta-layered-petal-crochet-flower-mat' },
-            { title: 'Crimson Shawl', category: 'Wear', note: 'Handcrafted', img: '/products/gallery/crimson-crochet-shawl-with-braided-tie-3.png', slug: 'maharani-crimson-scalloped-crochet-shawl' },
+            { title: 'Amethyst Grape Duo', category: 'Keychains', note: 'Handcrafted', img: 'https://res.cloudinary.com/zsjpdh9i/image/upload/f_auto,q_auto/v1792909121/knot-and-bloom/products/crocheted-grape-duo-keychain-3', slug: 'amethyst-lilac-grape-duo-crochet-keychain' },
+            { title: 'Teal & Mint Sling', category: 'Bags', note: 'Handcrafted', img: 'https://res.cloudinary.com/zsjpdh9i/image/upload/f_auto,q_auto/v1792909290/knot-and-bloom/products/teal-and-mint-crochet-wall-hanging-bag-7', slug: 'artisan-teal-mint-crochet-crossbody-festival-bag' },
+            { title: 'Emerald Petal Mat', category: 'Home', note: 'Handcrafted', img: 'https://res.cloudinary.com/zsjpdh9i/image/upload/f_auto,q_auto/v1792909204/knot-and-bloom/products/emerald-and-magenta-crochet-flower-mat', slug: 'emerald-magenta-layered-petal-crochet-flower-mat' },
+            { title: 'Crimson Shawl', category: 'Wear', note: 'Handcrafted', img: 'https://res.cloudinary.com/zsjpdh9i/image/upload/f_auto,q_auto/v1792909165/knot-and-bloom/products/crimson-crochet-shawl-with-braided-tie-3', slug: 'maharani-crimson-scalloped-crochet-shawl' },
           ].map((item, idx) => (
             <Link
               key={item.slug}
               href={`/product/${item.slug}`}
-              className="p-2.5 rounded-xl bg-charcoal-900/70 border border-gold-500/20 hover:border-gold-400/80 transition-all group flex items-center gap-3 backdrop-blur-md hover:-translate-y-1 shadow-sm"
+              className="p-2 sm:p-2.5 rounded-xl bg-charcoal-900/70 border border-gold-500/20 hover:border-gold-400/80 transition-all group flex items-center gap-2 sm:gap-3 backdrop-blur-md hover:-translate-y-1 shadow-sm"
             >
-              <div className="w-12 h-12 rounded-lg bg-maroon-950 overflow-hidden shrink-0 border border-gold-500/30">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-maroon-950 overflow-hidden shrink-0 border border-gold-500/30">
                 <img src={item.img} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
               </div>
               <div className="min-w-0">
-                <span className="text-[9px] uppercase tracking-wider text-gold-400 block font-semibold">
+                <span className="text-[9px] uppercase tracking-wider text-gold-400 block font-semibold truncate">
                   {item.category}
                 </span>
                 <p className="text-xs font-semibold text-ivory-100 truncate group-hover:text-gold-300 transition-colors">
