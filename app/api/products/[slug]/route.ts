@@ -48,8 +48,18 @@ export async function GET(
 
     return NextResponse.json({ product, relatedProducts });
   } catch (error) {
-    console.error('Product Detail GET Error:', error);
-    return NextResponse.json({ error: 'Failed to fetch product.' }, { status: 500 });
+    console.warn('Product Detail GET Error, falling back to static data:', error);
+    const staticData = await import('@/lib/catalog-static.json');
+    const prods = (staticData.products || []) as any[];
+    const targetSlug = params?.slug;
+    const product = prods.find((p) => p.slug === targetSlug || p.id === targetSlug);
+    if (!product) {
+      return NextResponse.json({ error: 'Product not found.' }, { status: 404 });
+    }
+    const relatedProducts = prods
+      .filter((p) => p.id !== product.id && (p.categoryId === product.categoryId || p.categorySlug === product.categorySlug))
+      .slice(0, 4);
+    return NextResponse.json({ product, relatedProducts });
   }
 }
 

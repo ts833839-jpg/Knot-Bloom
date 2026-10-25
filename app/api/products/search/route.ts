@@ -78,7 +78,17 @@ export async function GET(req: NextRequest) {
       products: matchedProducts,
     });
   } catch (error) {
-    console.error('Search API Error:', error);
-    return NextResponse.json({ error: 'Search failed.' }, { status: 500 });
+    console.warn('Search API Error, falling back to static catalog:', error);
+    const staticData = await import('@/lib/catalog-static.json');
+    const q = (new URL(req.url)).searchParams.get('q')?.toLowerCase() || '';
+    const prods = (staticData.products || []) as any[];
+    const matched = prods
+      .filter((p) => p.name && p.name.toLowerCase().includes(q))
+      .slice(0, 6);
+    return NextResponse.json({
+      suggestions: matched.map((p) => p.name),
+      categories: [],
+      products: matched,
+    });
   }
 }
