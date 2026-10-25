@@ -4,25 +4,12 @@
   command = "npm run build"
   publish = ".next"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
 [build.environment]
-  NODE_VERSION = "22"
-  NPM_FLAGS = "--legacy-peer-deps"
+  NODE_VERSION = "20"
   DATABASE_URL = "file:./prisma/dev.db"
   JWT_SECRET = "knotandbloom-luxury-secret-key-super-secure-2026"
   NEXTAUTH_SECRET = "knotandbloom-luxury-secret-key-super-secure-2026"
   NEXT_PUBLIC_APP_URL = "https://knotndbloom.netlify.app"
-
-[functions.environment]
-  DATABASE_URL = "file:./prisma/dev.db"
-  JWT_SECRET = "knotandbloom-luxury-secret-key-super-secure-2026"
-  NEXTAUTH_SECRET = "knotandbloom-luxury-secret-key-super-secure-2026"
-  NEXT_PUBLIC_APP_URL = "https://knotndbloom.netlify.app"
-
-[functions]
-  included_files = ["prisma/dev.db", "prisma/**", "lib/catalog-static.json"]
 
 [[headers]]
   for = "/*"
