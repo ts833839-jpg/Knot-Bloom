@@ -1,5 +1,6 @@
 import React from 'react';
 import prisma from '@/lib/prisma';
+import { getLiveCatalog } from '@/lib/cloud-catalog';
 import { DreamyHero } from '@/components/home/DreamyHero';
 import { CategoryBoutique } from '@/components/home/CategoryBoutique';
 import { CuratedCollections } from '@/components/home/CuratedCollections';
@@ -56,14 +57,14 @@ async function getHomepageData() {
       };
     }
   } catch (err) {
-    console.warn('Prisma DB query error, using fallback catalog data:', err);
+    console.warn('Prisma DB query error, using live Cloudinary catalog:', err);
   }
 
-  // Fallback to static catalog data so page NEVER crashes
-  const staticData = await import('@/lib/catalog-static.json');
+  // Fallback to live Cloudinary catalog so newly added products show up immediately
+  const live = await getLiveCatalog();
   return {
-    categories: staticData.categories || [],
-    products: staticData.products || [],
+    categories: live.categories || [],
+    products: live.products || [],
   };
 }
 

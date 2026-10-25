@@ -30,6 +30,7 @@ export function ProductCard({ product, onQuickView }: ProductCardProps) {
   const isFavorited = isInWishlist(product.id);
   const primaryImg = product.images[0].url;
   const secondaryImg = product.images[1]?.url || primaryImg;
+  const isVideo = primaryImg.endsWith('.mp4') || primaryImg.endsWith('.webm') || primaryImg.includes('/video/upload/');
 
   const whatsappMessage = encodeURIComponent(
     `Hello, I would like to inquire/order the handcrafted creation: "${product.name}". Please share details on bespoke order & dispatch.`
@@ -62,14 +63,25 @@ export function ProductCard({ product, onQuickView }: ProductCardProps) {
           <Heart className={`w-4 h-4 ${isFavorited ? 'fill-gold-400 text-gold-400' : ''}`} />
         </button>
 
-        {/* Product Image Link */}
+        {/* Product Image / Video Link */}
         <Link href={`/product/${product.slug}`} className="block w-full h-full">
-          <img
-            src={isHovered ? secondaryImg : primaryImg}
-            alt={product.name}
-            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-            loading="lazy"
-          />
+          {isVideo ? (
+            <video
+              src={primaryImg}
+              muted
+              autoPlay
+              loop
+              playsInline
+              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+          ) : (
+            <img
+              src={isHovered ? secondaryImg : primaryImg}
+              alt={product.name}
+              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              loading="lazy"
+            />
+          )}
         </Link>
 
         {/* Desktop Floating Action Overlays */}
@@ -96,81 +108,45 @@ export function ProductCard({ product, onQuickView }: ProductCardProps) {
       </div>
 
       {/* Product Details Section */}
-      <div className="p-3 sm:p-5 flex-1 flex flex-col justify-between">
+      <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
         <div>
           {/* Category */}
-          <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-charcoal-500 mb-1">
+          <div className="flex items-center justify-between text-[11px] text-charcoal-500 mb-1.5">
             <span className="uppercase tracking-wider font-semibold text-gold-700 truncate">
-              {product.category?.name || 'Crochet'}
+              {product.category?.name || 'Handcrafted Crochet'}
             </span>
-            <span className="text-[9px] sm:text-[10px] text-maroon-900 font-medium truncate ml-1">
-              Handcrafted
-            </span>
+            <span className="text-[10px] text-maroon-900 font-medium">Bespoke Artisan Work</span>
           </div>
 
           {/* Product Name */}
           <Link href={`/product/${product.slug}`} className="block group-hover:text-gold-700 transition-colors">
-            <h3 className="font-serif text-xs sm:text-base font-semibold text-maroon-950 leading-snug line-clamp-2 min-h-[2rem] sm:min-h-[2.5rem]">
+            <h3 className="font-serif text-base sm:text-lg font-semibold text-maroon-950 leading-snug line-clamp-2">
               {product.name}
             </h3>
           </Link>
 
-          {/* Subtitle (Desktop / Tablet only to keep mobile cards neat) */}
+          {/* Subtitle */}
           {product.subtitle && (
-            <p className="hidden sm:block text-xs text-charcoal-500 line-clamp-1 mt-1 font-light">
+            <p className="text-xs text-charcoal-500 line-clamp-1 mt-1 font-light">
               {product.subtitle}
             </p>
           )}
         </div>
 
-        {/* MOBILE ACTIONS (< 640px) */}
-        <div className="sm:hidden pt-2.5 border-t border-sand-dark/40 mt-2 space-y-2">
-          <div className="flex items-center justify-between text-[10px] text-charcoal-600">
-            <div className="flex items-center gap-1 font-medium text-maroon-950">
-              <Phone className="w-2.5 h-2.5 text-gold-600 shrink-0" />
-              <span>9080236848</span>
-            </div>
-            <span className="text-[9px] text-emerald-700 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
-              Available
-            </span>
-          </div>
-
-          <div className="grid grid-cols-2 gap-1.5">
-            <a
-              href={`https://wa.me/919080236848?text=${whatsappMessage}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="py-2 px-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-ivory-100 text-[11px] font-semibold flex items-center justify-center gap-1 shadow-sm transition-colors text-center"
-              title="Order on WhatsApp"
-            >
-              <MessageCircle className="w-3.5 h-3.5 shrink-0" />
-              <span className="truncate">WhatsApp</span>
-            </a>
-
-            <Link
-              href={`/product/${product.slug}`}
-              className="py-2 px-2 rounded-xl bg-maroon-900 hover:bg-maroon-950 text-gold-200 border border-gold-500/40 text-[11px] font-semibold flex items-center justify-center gap-1 shadow-sm transition-colors text-center"
-              title="View Creation Details"
-            >
-              <span className="truncate">Details</span>
-              <ArrowRight className="w-3 h-3 shrink-0" />
-            </Link>
-          </div>
-        </div>
-
-        {/* DESKTOP / TABLET ACTIONS (>= 640px) */}
-        <div className="hidden sm:flex pt-3 border-t border-sand-dark/40 mt-3 items-center justify-between">
+        {/* Contact & Inquiry Action Bar (Zero Prices) */}
+        <div className="pt-3 border-t border-sand-dark/40 mt-3 flex items-center justify-between">
           <div className="space-y-0.5 text-left">
             <div className="flex items-center gap-1.5 text-xs text-charcoal-700 font-medium">
               <Phone className="w-3 h-3 text-gold-600 shrink-0" />
               <span>9080236848</span>
             </div>
-            <div className="flex items-center gap-1.5 text-[10px] text-charcoal-500 truncate max-w-[130px]">
+            <div className="flex items-center gap-1.5 text-[10px] text-charcoal-500 truncate max-w-[140px]">
               <Mail className="w-2.5 h-2.5 text-gold-600 shrink-0" />
               <span className="truncate">suresh140105@gmail.com</span>
             </div>
           </div>
 
+          {/* Action Trigger */}
           <div className="flex items-center gap-1.5">
             <a
               href={`https://wa.me/919080236848?text=${whatsappMessage}`}

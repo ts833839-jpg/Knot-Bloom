@@ -30,46 +30,65 @@ export function QuickViewModal({ product, onClose }: QuickViewModalProps) {
   );
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 animate-in fade-in">
-      <div className="relative bg-ivory-50 rounded-2xl max-w-3xl w-full border border-gold-500/40 shadow-royal-lg overflow-y-auto md:overflow-hidden flex flex-col md:flex-row max-h-[92vh]">
+    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in">
+      <div className="relative bg-ivory-50 rounded-2xl max-w-3xl w-full border border-gold-500/40 shadow-royal-lg overflow-hidden flex flex-col md:flex-row max-h-[90vh]">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 p-2 rounded-full bg-ivory-100/90 hover:bg-ivory-100 text-charcoal-700 hover:text-maroon-900 border border-gold-500/30 transition-all shadow-sm"
+          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-ivory-100/80 hover:bg-ivory-100 text-charcoal-700 hover:text-maroon-900 border border-gold-500/30 transition-all"
         >
-          <X className="w-4 h-4 sm:w-5 sm:h-5" />
+          <X className="w-5 h-5" />
         </button>
 
         {/* Left: Gallery */}
-        <div className="md:w-1/2 p-4 sm:p-6 flex flex-col items-center justify-between bg-maroon-950/5">
-          <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-white shadow-inner mb-3 sm:mb-4">
-            <img
-              src={selectedImg}
-              alt={product.name}
-              className="w-full h-full object-cover"
-            />
+        <div className="md:w-1/2 p-6 flex flex-col items-center justify-between bg-maroon-950/5">
+          <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-white shadow-inner mb-4">
+            {selectedImg && (selectedImg.endsWith('.mp4') || selectedImg.endsWith('.webm') || selectedImg.includes('/video/upload/')) ? (
+              <video
+                src={selectedImg}
+                controls
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <img
+                src={selectedImg}
+                alt={product.name}
+                className="w-full h-full object-cover"
+              />
+            )}
           </div>
 
           {/* Thumbnails */}
           {product.images && product.images.length > 1 && (
-            <div className="flex gap-2 overflow-x-auto w-full pb-1 sm:pb-2">
-              {product.images.map((img, idx) => (
-                <button
-                  key={img.id || idx}
-                  onClick={() => setSelectedImg(img.url)}
-                  className={`w-12 h-12 sm:w-14 sm:h-14 rounded-lg overflow-hidden border-2 shrink-0 transition-all ${
-                    selectedImg === img.url ? 'border-gold-500 shadow-sm' : 'border-transparent opacity-70'
-                  }`}
-                >
-                  <img src={img.url} alt="thumbnail" className="w-full h-full object-cover" />
-                </button>
-              ))}
+            <div className="flex gap-2 overflow-x-auto w-full pb-2">
+              {product.images.map((img, idx) => {
+                const isItemVideo = img.url.endsWith('.mp4') || img.url.endsWith('.webm') || img.url.includes('/video/upload/');
+                return (
+                  <button
+                    key={img.id || idx}
+                    onClick={() => setSelectedImg(img.url)}
+                    className={`w-14 h-14 rounded-lg overflow-hidden border-2 shrink-0 transition-all relative ${
+                      selectedImg === img.url ? 'border-gold-500 shadow-sm' : 'border-transparent opacity-70'
+                    }`}
+                  >
+                    {isItemVideo ? (
+                      <video src={img.url} className="w-full h-full object-cover" muted />
+                    ) : (
+                      <img src={img.url} alt="thumbnail" className="w-full h-full object-cover" />
+                    )}
+                  </button>
+                );
+              })}
             </div>
           )}
         </div>
 
         {/* Right: Details & Bespoke Inquiry */}
-        <div className="md:w-1/2 p-4 sm:p-6 md:overflow-y-auto flex flex-col justify-between space-y-4">
+        <div className="md:w-1/2 p-6 overflow-y-auto flex flex-col justify-between space-y-4">
           <div>
             <span className="text-xs uppercase tracking-widest font-semibold text-gold-700">
               {product.category?.name || 'Handcrafted Crochet'}
