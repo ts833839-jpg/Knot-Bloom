@@ -120,3 +120,17 @@ h1, h2, h3, h4, .font-serif {
 .animate-float {
   animation: float 5s ease-in-out infinite;
 }
+
+/* Suppress Netlify badge & feedback drawer injection from obscuring UI */
+#netlify-badge,
+.netlify-badge,
+[data-netlify-badge],
+iframe[src*="netlify"],
+iframe[id*="netlify"],
+div[id*="netlify"],
+div:has(> a[href*="netlify.com"]) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
