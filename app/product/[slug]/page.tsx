@@ -17,11 +17,14 @@ import {
   Layers,
   Scissors,
   Clock,
+  Maximize2,
+  ZoomIn,
 } from 'lucide-react';
 import { ProductType, ProductVariantType } from '@/types';
 import { useWishlist } from '@/components/providers/WishlistProvider';
 import { useToast } from '@/components/providers/ToastProvider';
 import { ProductCard } from '@/components/products/ProductCard';
+import { ImagePreviewModal } from '@/components/common/ImagePreviewModal';
 
 export default function ProductDetailPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
@@ -35,6 +38,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
   const [selectedImg, setSelectedImg] = useState<string>('');
   const [selectedVariant, setSelectedVariant] = useState<ProductVariantType | null>(null);
   const [showInquiryForm, setShowInquiryForm] = useState(false);
+  const [showImagePreview, setShowImagePreview] = useState(false);
 
   // Inquiry form inputs
   const [clientName, setClientName] = useState('');
@@ -226,12 +230,24 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
               </button>
             </div>
 
-            {/* Main Showcase Image */}
-            <img
-              src={selectedImg || '/products/placeholder-royal.svg'}
-              alt={product.name}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
+            {/* Main Showcase Image - Click for Amazon/Flipkart style full uncropped preview */}
+            <div
+              onClick={() => setShowImagePreview(true)}
+              className="w-full h-full flex items-center justify-center p-3 sm:p-5 cursor-zoom-in relative group/main"
+              title="Click to view full uncropped image (Flipkart/Amazon style zoom)"
+            >
+              <img
+                src={selectedImg || '/products/placeholder-royal.svg'}
+                alt={product.name}
+                className="w-full h-full object-contain transition-transform duration-500 group-hover/main:scale-105"
+              />
+
+              {/* Floating Full View Pill */}
+              <div className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full bg-maroon-950/85 backdrop-blur-md border border-gold-400/40 text-gold-200 text-xs font-semibold flex items-center gap-1.5 shadow-royal pointer-events-none group-hover/main:bg-maroon-900 transition-colors">
+                <Maximize2 className="w-3.5 h-3.5 text-gold-400" />
+                <span>Click for Full View</span>
+              </div>
+            </div>
           </div>
 
           {/* Thumbnails if multiple images */}
@@ -241,17 +257,33 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                 <button
                   key={img.id}
                   onClick={() => setSelectedImg(img.url)}
-                  className={`w-20 h-20 rounded-xl overflow-hidden border-2 shrink-0 transition-all ${
+                  className={`w-20 h-20 rounded-xl overflow-hidden border-2 shrink-0 transition-all bg-white ${
                     selectedImg === img.url
                       ? 'border-gold-500 ring-2 ring-gold-400/40'
                       : 'border-sand-dark opacity-75 hover:opacity-100'
                   }`}
                 >
-                  <img src={img.url} alt="" className="w-full h-full object-cover" />
+                  <img src={img.url} alt="" className="w-full h-full object-contain p-1" />
                 </button>
               ))}
             </div>
           )}
+
+          {/* Amazon / Flipkart Style Full View Lightbox Modal */}
+          <ImagePreviewModal
+            isOpen={showImagePreview}
+            onClose={() => setShowImagePreview(false)}
+            images={(product.images || []).map((img) => ({
+              url: img.url,
+              alt: product.name,
+              title: product.name,
+            }))}
+            initialIndex={Math.max(
+              0,
+              (product.images || []).findIndex((i) => i.url === selectedImg)
+            )}
+            productTitle={product.name}
+          />
 
           {/* Craft Guarantee Trio */}
           <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-2 text-center text-xs">
